@@ -2,6 +2,9 @@
 <html>
   <head>
     <%= render 'shared/head' %>
+    <% if content_for?(:head) %>
+      <%= yield :head%>
+    <% end %>
   </head>
 
   <body>

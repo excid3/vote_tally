@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_233040) do
+ActiveRecord::Schema.define(version: 2019_03_05_193447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,42 @@ ActiveRecord::Schema.define(version: 2019_03_03_233040) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "polls", force: :cascade do |t|
+    t.bigint "riding_id"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "candidate_one", default: 0, null: false
+    t.integer "candidate_two", default: 0, null: false
+    t.integer "candidate_three", default: 0, null: false
+    t.integer "candidate_four", default: 0, null: false
+    t.index ["riding_id"], name: "index_polls_on_riding_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ridings", force: :cascade do |t|
+    t.integer "number"
+    t.string "name"
+    t.string "province"
+    t.integer "eligible_voters"
+    t.integer "win_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "liberal_vote_count", default: 0, null: false
+    t.integer "conservative_vote_count", default: 0, null: false
+    t.integer "ndp_vote_count", default: 0, null: false
+    t.integer "green_vote_count", default: 0, null: false
+    t.integer "peoples_vote_count", default: 0, null: false
+    t.integer "total_vote_count", default: 0, null: false
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_ridings_on_region_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.bigint "user_id"
     t.string "provider"
@@ -76,5 +112,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_233040) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "polls", "ridings"
+  add_foreign_key "ridings", "regions"
   add_foreign_key "services", "users"
 end

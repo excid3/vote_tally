@@ -1,0 +1,34 @@
+<%= form_with(model: region, local: true) do |form| %>
+  <% if region.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(region.errors.count, "error") %> prohibited this region from being saved:</h2>
+
+      <ul>
+      <% region.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if region.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', region, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if region.persisted? %>
+      <%= link_to "Cancel", region, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", regions_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

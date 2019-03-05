@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to polls_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    All Polls
+  <% end %>
+  <%= link_to edit_poll_path(@poll), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+  <h1>Show poll</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Riding:</dt>
+  <dd><%= @poll.riding %></dd>
+
+  <dt>Number:</dt>
+  <dd><%= @poll.number %></dd>
+
+</dl>

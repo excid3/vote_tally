@@ -1,0 +1,64 @@
+<% content_for :head do %>
+  <meta name="turbolinks-visit-control" content="reload">
+<% end %>
+
+<div class="page-header">
+  <%= link_to ridings_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    All Ridings
+  <% end %>
+  <%= link_to edit_riding_path(@riding), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
+  <% end %>
+
+  <%= link_to dashboard_riding_path(@riding), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Dashboard
+  <% end %>
+
+  <h1><%= @riding.name %> - <%= @riding.number %></h1>
+  <h2><%= @riding.province %></h2>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Eligible voters:</dt>
+  <dd><%= @riding.eligible_voters %></dd>
+
+  <dt>Win number:</dt>
+  <dd><%= @riding.win_number %></dd>
+
+</dl>
+
+<div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Poll #</th>
+        <th scope="col">Candiate 1</th>
+        <th scope="col">Candiate 2</th>
+        <th scope="col">Candiate 3</th>
+        <th scope="col">Candiate 4</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <% @riding.polls.order(:number).each do |poll| %>
+        <%= form_for poll do |p| %>
+        <tr>
+          <th scope="row"><%= poll.number %></th>
+          <td><%= p.number_field :candidate_one %></td>
+          <td><%= p.number_field :candidate_two %></td>
+          <td><%= p.number_field :candidate_three %></td>
+          <td><%= p.number_field :candidate_four %></td>
+          <td><%= p.submit "Update", class: "btn btn-primary" %>
+        </tr>
+        <% end %>
+      <% end %>
+      
+  </tbody>
+    
+
+</table>
+</div>

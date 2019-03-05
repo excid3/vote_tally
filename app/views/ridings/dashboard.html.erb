@@ -1,0 +1,52 @@
+<div class="page-header">
+  <div style="float: right">
+    <%= link_to riding_path(@riding), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Data Entry
+    <% end %>
+  </div>
+
+  <h1><%= @riding.name %> - <%= @riding.number %></h1>
+  <h2><%= @riding.province %></h2>
+</div>
+
+<div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Liberal</th>
+        <th scope="col">Conservative</th>
+        <th scope="col">NDP</th>
+        <th scope="col">Green</th>
+        <th scope="col">People's Party</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Oliver</td>
+        <td>Terence Young</td>
+        <td>Che Marville</td>
+        <td>David Doel</td>
+        <td>Jackass</td>
+      </tr>    
+
+      <tr>
+        <td><%= @riding.liberal_vote_count %></td>
+        <td><%= @riding.conservative_vote_count %></td>
+        <td><%= @riding.ndp_vote_count %></td>
+        <td><%= @riding.green_vote_count %></td>
+        <td><%= @riding.peoples_vote_count %></td>
+      </tr>      
+    </tbody>
+  </table>
+
+  Predicted: <%= @predicted %>
+</div>
+
+<div>
+  Total votes: <%= @riding.total_vote_count %> <br>
+  Polls reporting: <%= @polls_reporting %> / <%= @total_polls %> <br>
+  Eligible voters: <%= @riding.eligible_voters %> <br>
+  Voter Turnout: <%= number_with_precision(@voter_turnout, precision: 2) %>%
+
+</div>

@@ -1,0 +1,54 @@
+<%= form_with(model: riding, local: true) do |form| %>
+  <% if riding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(riding.errors.count, "error") %> prohibited this riding from being saved:</h2>
+
+      <ul>
+      <% riding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :number %>
+    <%= form.number_field :number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :province %>
+    <%= form.text_field :province, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :eligible_voters %>
+    <%= form.number_field :eligible_voters, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :win_number %>
+    <%= form.number_field :win_number, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if riding.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', riding, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if riding.persisted? %>
+      <%= link_to "Cancel", riding, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", ridings_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

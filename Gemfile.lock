@@ -74,6 +74,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    after_commit_action (1.1.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -112,6 +115,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
     connection_pool (2.2.2)
+    counter_culture (2.1.4)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      after_commit_action (~> 1.0)
     crass (1.0.4)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
@@ -341,6 +348,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  counter_culture (~> 2.0)
   devise (~> 4.6, >= 4.6.1)
   devise-bootstrapped!
   devise_masquerade (~> 0.6.2)
